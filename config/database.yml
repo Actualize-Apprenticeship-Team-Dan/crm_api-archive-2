@@ -20,6 +20,10 @@ default: &default
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  username: codeauslander
+  password: 1234
+
 
 development:
   <<: *default
@@ -81,5 +85,5 @@ test:
 production:
   <<: *default
   database: crm_api_production
-  username: crm_api
-  password: <%= ENV['CRM_API_DATABASE_PASSWORD'] %>
+  # username: crm_api
+  # password: <%= ENV['CRM_API_DATABASE_PASSWORD'] %>

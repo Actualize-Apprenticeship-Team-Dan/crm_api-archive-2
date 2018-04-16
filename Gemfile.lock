@@ -129,6 +129,7 @@ GEM
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
+    railroady (1.5.3)
     rails (5.0.2)
       actioncable (= 5.0.2)
       actionmailer (= 5.0.2)
@@ -233,6 +234,7 @@ DEPENDENCIES
   phone (= 1.2.3)
   pry
   puma (~> 3.0)
+  railroady
   rails (~> 5.0.1)
   rubocop
   sass-rails (~> 5.0)
