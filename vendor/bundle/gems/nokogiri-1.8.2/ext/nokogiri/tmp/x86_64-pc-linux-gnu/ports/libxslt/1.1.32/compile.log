@@ -1,0 +1,29 @@
+make  all-recursive
+make[1]: Entering directory '/home/u/Actualize/crm_api/vendor/bundle/gems/nokogiri-1.8.2/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxslt/1.1.32/libxslt-1.1.32'
+Making all in libxslt
+make[2]: Entering directory '/home/u/Actualize/crm_api/vendor/bundle/gems/nokogiri-1.8.2/ext/nokogiri/tmp/x86_64-pc-linux-gnu/ports/libxslt/1.1.32/libxslt-1.1.32/libxslt'
+  CC       attrvt.lo
+  CC       xslt.lo
+  CC       xsltlocale.lo
+  CC       xsltutils.lo
+  CC       pattern.lo
+  CC       templates.lo
+  CC       variables.lo
+  CC       keys.lo
+  CC       numbers.lo
+  CC       extensions.lo
+  CC       extra.lo
+  CC       functions.lo
+  CC       namespaces.lo
+  CC       imports.lo
+  CC       attributes.lo
+  CC       documents.lo
+  CC       preproc.lo
+  CC       transform.lo
+  CC       security.lo
+Makefile:576: recipe for target 'security.lo' failed
+make[2]: *** [security.lo] Error 1
+Makefile:614: recipe for target 'all-recursive' failed
+make[1]: *** [all-recursive] Interrupt
+Makefile:440: recipe for target 'all' failed
+make: *** [all] Interrupt

@@ -1,0 +1,19 @@
+current directory: /home/u/Actualize/crm_api/vendor/bundle/gems/byebug-9.0.6/ext/byebug
+/home/u/.rbenv/versions/2.5.0/bin/ruby -r ./siteconf20180409-6475-15af1qd.rb extconf.rb
+creating Makefile
+
+current directory: /home/u/Actualize/crm_api/vendor/bundle/gems/byebug-9.0.6/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /home/u/Actualize/crm_api/vendor/bundle/gems/byebug-9.0.6/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.so
+
+current directory: /home/u/Actualize/crm_api/vendor/bundle/gems/byebug-9.0.6/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.so ./.gem.20180409-6475-1llajij/byebug

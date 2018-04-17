@@ -1,0 +1,12 @@
+prefix=/home/u/Actualize/crm_api/vendor/bundle/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32
+exec_prefix=${prefix}
+libdir=/home/u/Actualize/crm_api/vendor/bundle/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxslt/1.1.32/lib
+includedir=${prefix}/include
+
+
+Name: libexslt
+Version: 0.8.20
+Description: EXSLT Extension library
+Requires: libxml-2.0
+Libs: -L${libdir} -lexslt -lxslt -L/home/u/Actualize/crm_api/vendor/bundle/gems/nokogiri-1.8.2/ports/x86_64-pc-linux-gnu/libxml2/2.9.7/lib -lxml2 -lz -lm -ldl -lm 
+Cflags: -I${includedir}
