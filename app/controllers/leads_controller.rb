@@ -108,14 +108,22 @@ class LeadsController < ApplicationController
 
   # Text from the browser:
   def text
+    firstname = @lead.first_name
+    bodytext =
+     if params[:body] == nil
+        firstname
+      else
+        params[:body]
+      end
     @client = Twilio::REST::Client.new
     @client.messages.create(
       from: ENV['TWILIO_PHONE_NUMBER'],
       to: params[:phone],
-      body: params[:body]
+      body: bodytext
     )
 
-    render nothing: true
+    flash[:success] = "Message Sent!"
+    redirect_to '/'
   end
 
   def no_leads

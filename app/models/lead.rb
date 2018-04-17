@@ -19,7 +19,8 @@ class Lead < ApplicationRecord
     @client.messages.create(
       from: ENV['TWILIO_PHONE_NUMBER'],
       to: self.phone,
-      body: 'Hi - this is Rena from Actualize. Do you have a minute to chat?'
+      body: "Hi, + self.first_name + this is Rena from Actualize. Do you have a minute to talk?"
+      #'Hi - this is Rena from Actualize. Do you have a minute to chat?'
     )
   end
 
