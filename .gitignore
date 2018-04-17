@@ -20,4 +20,4 @@
 /config/application.yml
 .DS_Store
 
-vendor/bundley
+/vendor/bundle/*
