@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Settings#edit</h1>
+  <p>Find me in app/views/settings/edit.html.erb</p>
+
+    <div class="form-group">
+      <%= form_for @setting, url: '/settings', method: :patch do |setting| %>
+        <%= setting.label :auto_text %>
+        <%= setting.text_field :auto_text, class: "form-control form-control-warning" %>
+        
+        <small id="emailHelp" class="form-text text-muted">Have fun!.</small>
+        <button type="submit" class="btn btn-primary">Save</button>
+      <% end %>
+    </div>
+
+</div>
+
+
