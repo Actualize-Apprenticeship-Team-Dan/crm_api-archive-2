@@ -96,17 +96,18 @@ ActiveRecord::Schema.define(version: 20180416020239) do
     t.boolean  "online",                    default: false
   end
 
-  create_table "settings", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "admin_id"
-    t.string   "auto_text"
-
   create_table "outreaches", force: :cascade do |t|
     t.integer  "lead_id"
     t.string   "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "admin_id"
+    t.string   "auto_text"
   end
 
   add_foreign_key "events", "leads"

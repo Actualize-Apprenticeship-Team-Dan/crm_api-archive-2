@@ -54,7 +54,12 @@ class LeadsController < ApplicationController
     @lead = Lead.find_by(id: params[:id])
 
     if @lead.update(lead_params)
-      outreach_message = create_outreach(@lead.id, params[:outreach]) if params[:outreach]
+      outreach_message =
+        unless params[:outreach] === ""
+          create_outreach(@lead.id, params[:outreach])
+        else
+          ''
+        end
       flash[:success] = "Lead saved! #{outreach_message}"
       redirect_to '/'
     else
