@@ -108,8 +108,6 @@ class LeadsController < ApplicationController
 
   # Text from the browser:
   def text
-    bodytext =
-
     @client = Twilio::REST::Client.new
     @client.messages.create(
       from: ENV['TWILIO_PHONE_NUMBER'],
@@ -125,7 +123,6 @@ class LeadsController < ApplicationController
         @lead = Lead.find(params[:id])
         first_name = @lead.first_name.split(' ')[0]
        
-   
     @client = Twilio::REST::Client.new
     @client.messages.create(
       from: ENV['TWILIO_PHONE_NUMBER'],
