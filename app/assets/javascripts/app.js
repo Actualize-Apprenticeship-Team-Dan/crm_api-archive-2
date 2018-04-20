@@ -19,21 +19,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
     methods: {
       moment: function(date) {
         return moment(date);
-      },
-      isValidLead: function(lead) {
-        console.log(lead);
-        var validLead = null;
-        var filter = this.leadFilter.toLowerCase();
-        if (
-          lead.first_name.toLowerCase().includes(filter) ||
-          lead.last_name.toLowerCase().includes(filter) ||
-          lead.email.toLowerCase().includes(filter)
-        ) {
-          validLead = lead;
-        }
-        return validLead;
       }
     },
-    computed: {}
+    computed: {
+      filteredLeads: function() {
+        return this.leads.filter(
+          function(lead) {
+            var filter = this.leadFilter.toLowerCase();
+            if (
+              lead.first_name.toLowerCase().includes(filter) ||
+              lead.last_name.toLowerCase().includes(filter) ||
+              lead.email.toLowerCase().includes(filter)
+            ) {
+              return lead;
+            }
+          }.bind(this)
+        );
+      }
+    }
   });
 });
