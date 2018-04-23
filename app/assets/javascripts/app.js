@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       leads: [],
       leadFilter: "",
       time_format: "12/25/17",
-      url: "https://www.google.com/"
+      url: "https://www.google.com/",
+      direction: true
     },
     mounted: function() {
       $.get("/api/v1/leads.json").success(
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             lead.showEvents = false;
           });
           this.leads = response;
+          this.leads = _.sortBy(this.leads, ['created_at']);
         }.bind(this)
       );
     },
@@ -27,7 +29,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var index = this.leads.indexOf(lead);
         lead.showEvents = !lead.showEvents;
         this.filteredLeads[index] = lead;
-      }
+      },
+      alphabetize: function(attr)
+      {
+        console.log(attr);
+        direction = this.direction ? "asc" : "desc";
+        this.direction = !this.direction;
+        var leads = _.orderBy(this.leads, [attr],[direction]);
+        this.leads = leads;
+      },
     },
     computed: {
       filteredLeads: function() {

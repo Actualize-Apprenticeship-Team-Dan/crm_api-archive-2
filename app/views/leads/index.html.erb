@@ -14,12 +14,13 @@
           <table class="table table-striped table-hover">
             <thead>
               <tr>
-                <th>Created</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Appointment Date</th>
+                <th v-on:click="alphabetize('created_at')">Created</th>
+                <th v-on:click="alphabetize('first_name')"> First Name</th>
+                <th v-on:click="alphabetize('last_name')"> Last Name</th>
+                <th v-on:click="alphabetize('email')"> Email</th>
+                <th v-on:click="alphabetize('phone')"> Phone</th>
+                <th v-on:click="
+                alphabetize('appointment_date')"> Appointment Date</th>
                 <th>Notes</th>
               </tr>
             </thead>

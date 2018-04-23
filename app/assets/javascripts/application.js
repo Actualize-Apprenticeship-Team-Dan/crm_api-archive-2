@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require vue
 //= require moment
+//= require lodash
 //= require_tree .
