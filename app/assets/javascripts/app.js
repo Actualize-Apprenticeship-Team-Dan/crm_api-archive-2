@@ -10,15 +10,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
       direction: true
     },
     mounted: function() {
-      $.get('/api/v1/leads.json').success(function(response) {
-        console.log(this);
-        this.leads = response;
-        this.leads = _.sortBy(this.leads, ['created_at']);
-      }.bind(this));
+      $.get("/api/v1/leads.json").success(
+        function(response) {
+          console.log(this);
+          response.forEach(function(lead) {
+            lead.showEvents = false;
+          });
+          this.leads = response;
+          this.leads = _.sortBy(this.leads, ['created_at']);
+        }.bind(this)
+      );
     },
     methods: {
       moment: function(date) {
         return moment(date);
+      },
+      showLeadEvents: function(lead) {
+        var index = this.leads.indexOf(lead);
+        lead.showEvents = !lead.showEvents;
+        this.filteredLeads[index] = lead;
       },
       alphabetize: function(attr)
       {
