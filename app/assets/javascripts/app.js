@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $.get("/api/v1/leads.json").success(
         function(response) {
           console.log(this);
+          response.forEach(function(lead) {
+            lead.showEvents = false;
+          });
           this.leads = response;
         }.bind(this)
       );
@@ -19,6 +22,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     methods: {
       moment: function(date) {
         return moment(date);
+      },
+      showLeadEvents: function(lead) {
+        var index = this.leads.indexOf(lead);
+        lead.showEvents = !lead.showEvents;
+        this.filteredLeads[index] = lead;
       }
     },
     computed: {

@@ -24,15 +24,48 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="lead in filteredLeads" >
-                <td>{{ moment(lead.created_at).format('dddd MMM Do YYYY, h:mm a') }}</td>
-                <td>{{ lead.first_name }}</td>
-                <td>{{ lead.last_name }}</td>
-                <td><a v-bind:href="'/leads/' + lead.id + '/edit'">{{ lead.email }}</a></td>
-                <td>{{ lead.phone }}</td>
-                <td>{{ moment(lead.appointment_date).format('dddd MMM Do YYYY, h:mm a') }}</td>
-                <td>{{ lead.notes }}</td>
-              </tr>
+              <template v-for="lead in filteredLeads" >
+                <tr v-on:click="showLeadEvents(lead)" :key="lead.id" >
+                  <td>{{ moment(lead.created_at).format('dddd MMM Do YYYY, h:mm a') }}</td>
+                  <td>{{ lead.first_name }}</td>
+                  <td>{{ lead.last_name }}</td>
+                  <td><a v-bind:href="'/leads/' + lead.id + '/edit'">{{ lead.email }}</a></td>
+                  <td>{{ lead.phone }}</td>
+                  <td>{{ moment(lead.appointment_date).format('dddd MMM Do YYYY, h:mm a') }}</td>
+                  <td>{{ lead.notes }}</td>
+                </tr>
+                <template v-if="lead.showEvents" >
+                  <tr style="background-color: LightSkyBlue;">
+                    <td></td>
+                    <td></td>
+                    <td>Name</td>
+                    <td>Created At</td>
+                    <td>Updated At</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr style="background-color: Azure;" :key="event.id" v-on:click="showLeadEvents(lead)" v-for="event in lead.events">
+                    <!-- <p>{{event.name}}</p> -->
+                    
+                    <td></td>
+                    <td></td>
+                    <td>{{event.name}}</td>
+                    <td>{{event.created_at}}</td>
+                    <td>{{event.updated_at}}</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </template>
+                
+                    
+               
+                
+                
+              </template>
+                                        
+            
+              
+              
             </tbody>
           </table>
         </div>
