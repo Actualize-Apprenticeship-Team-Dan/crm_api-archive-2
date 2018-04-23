@@ -114,9 +114,8 @@ class LeadsController < ApplicationController
       to: params[:phone],
       body: params[:body]
     )
-
     flash[:success] = "Message Sent!"
-    redirect_to '/'
+    redirect_to "/leads/#{params[:id]}/edit"
   end
 
   def autotext
