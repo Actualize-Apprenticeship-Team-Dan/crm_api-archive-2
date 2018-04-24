@@ -38,6 +38,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var leads = _.orderBy(this.leads, [attr],[direction]);
         this.leads = leads;
       },
+      zeroOutreach: function(lead) {
+        console.log("Cesar");
+        console.log(lead.outreaches.length);
+        if(lead.outreaches.length === 0) {
+          return true
+        }
+        else{
+          return false
+        }
+
+      },
     },
     computed: {
       filteredLeads: function() {
