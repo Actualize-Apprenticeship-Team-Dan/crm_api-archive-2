@@ -1,7 +1,7 @@
 class Api::V1::LeadsController < ApplicationController
 
   def index
-    @leads = Lead.all
+    @leads = Lead.includes(:outreaches, :events).all
     render "index.json.jbuilder"
   end
 
