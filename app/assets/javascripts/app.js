@@ -39,8 +39,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         this.leads = leads;
       },
       zeroOutreach: function(lead) {
-        console.log("Cesar");
-        console.log(lead.outreaches.length);
         if(lead.outreaches.length === 0) {
           return true
         }
