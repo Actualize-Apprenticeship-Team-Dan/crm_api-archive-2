@@ -40,13 +40,59 @@ document.addEventListener("DOMContentLoaded", function(event) {
       },
       zeroOutreach: function(lead) {
         if(lead.outreaches.length === 0) {
-          return true
-        }
-        else{
-          return false
+          return true;
+        } else {
+          return false;
         }
 
       },
+      hotLead: function(lead) {
+        if (this.zeroOutreach(lead)) {
+          return 'bg-warning'
+        }
+
+        var filterEvents = lead.events.filter(function(event){
+          return !!event;
+        });
+
+        var filterOutreaches = lead.outreaches.filter(function(outreach){
+          return !!outreach;
+        });
+
+        var sortDates = function(a, b){
+          var keyA = new Date(a.created_at),
+              keyB = new Date(b.created_at);
+          return keyB - keyA;
+        }
+
+        var sortEvents = filterEvents.sort(sortDates);
+        var lastEventDate = sortEvents.length ? sortEvents[0].created_at : null;
+        
+
+        var sortOutreaches = filterOutreaches.sort(sortDates);
+        var lastOutreachDate = sortOutreaches.length ? sortOutreaches[0].created_at : null;
+
+        if (lastEventDate === null || lastOutreachDate === null) {
+          return '';
+        }
+
+        var outreach = new Date(lastOutreachDate);
+        var event = new Date(lastEventDate);
+
+
+        if ( event > outreach ) {
+          console.log('event created_at',event);
+          console.log('outreach created_at',outreach);
+
+          return 'bg-info'
+
+        } else {
+          console.log('event created_at',event);
+          console.log('outreach created_at',outreach);
+          return '';
+        }
+
+      }
     },
     computed: {
       filteredLeads: function() {

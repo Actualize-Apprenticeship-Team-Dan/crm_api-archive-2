@@ -26,7 +26,8 @@
             </thead>
             <tbody>
               <template v-for="lead in filteredLeads" >
-                <tr v-bind:class=" { 'bg-warning' : zeroOutreach(lead) } " v-on:click="showLeadEvents(lead)" :key="lead.id" >
+                <!-- v-bind:class=" { 'bg-warning' : zeroOutreach(lead) } " -->
+                <tr v-bind:class="hotLead(lead)" v-on:click="showLeadEvents(lead)" :key="lead.id" >
                   <td>{{ moment(lead.created_at).format('dddd MMM Do YYYY, h:mm a') }}</td>
                   <td>{{ lead.first_name }}</td>
                   <td>{{ lead.last_name }}</td>
