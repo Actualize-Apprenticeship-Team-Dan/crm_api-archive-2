@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             lead.showEvents = false;
           });
           this.leads = response;
-          this.leads = _.sortBy(this.leads, ['created_at']);
+          this.leads = _.orderBy(this.leads, ['most_recent_event'], ["desc"]);
         }.bind(this)
       );
     },
