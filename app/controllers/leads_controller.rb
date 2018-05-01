@@ -121,12 +121,13 @@ class LeadsController < ApplicationController
   def autotext
         @lead = Lead.find(params[:id])
         first_name = @lead.first_name.split(' ')[0]
+        auto_text = admin_autotext
        
     @client = Twilio::REST::Client.new
     @client.messages.create(
       from: ENV['TWILIO_PHONE_NUMBER'],
       to: @lead.phone,
-      body: "Hi, #{first_name} This is Rena from the Actualize coding bootcamp. Do you have a minute to talk?"
+      body: "Hi #{first_name}. " + auto_text
     )
 
     flash[:success] = "Message Sent!"
@@ -141,6 +142,14 @@ class LeadsController < ApplicationController
 
   def lead_params
     params.require(:lead).permit(:first_name, :last_name, :email, :phone, :city, :state, :zip, :contacted, :appointment_date, :notes, :connected, :bad_number, :advisor, :location, :first_appointment_set, :first_appointment_actual, :first_appointment_format, :second_appointment_set, :second_appointment_actual, :second_appointment_format, :enrolled_date, :deposit_date, :sales, :collected, :status, :next_step, :rep_notes, :exclude_from_calling, :meeting_type, :meeting_format)
+  end
+
+  def admin_autotext
+    if current_admin.setting
+      current_admin.setting.auto_text
+    else
+      "This is Rena from the Actualize coding bootcamp. Do you have a minute to talk?"
+    end
   end
 
   def create_outreach(lead_id, text)
