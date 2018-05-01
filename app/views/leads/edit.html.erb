@@ -54,6 +54,7 @@
             <div class="form-group row">
               <div class="col-md-6">
                 <%= submit_tag "Send Auto Text", {class: "form-control btn btn-info"} %>
+                 <%= hidden_field_tag :admin, @admin, {class: "form-control form-control-warning"} %>
               </div>
             </div>
             <% end %>
