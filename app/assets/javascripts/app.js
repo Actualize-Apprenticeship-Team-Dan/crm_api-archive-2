@@ -68,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var sortEvents = filterEvents.sort(sortDates);
         var lastEventDate = sortEvents.length ? sortEvents[0].created_at : null;
         
-
         var sortOutreaches = filterOutreaches.sort(sortDates);
         var lastOutreachDate = sortOutreaches.length ? sortOutreaches[0].created_at : null;
 
@@ -81,14 +80,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
         if ( event > outreach ) {
-          console.log('event created_at',event);
-          console.log('outreach created_at',outreach);
-
           return 'bg-info'
-
-        } else {
-          console.log('event created_at',event);
-          console.log('outreach created_at',outreach);
+      } else {  
           return '';
         }
 
