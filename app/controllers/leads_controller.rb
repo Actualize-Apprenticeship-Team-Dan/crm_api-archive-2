@@ -47,7 +47,7 @@ class LeadsController < ApplicationController
                   :to   => @lead.phone,
                   :from => ENV['TWILIO_PHONE_NUMBER']
     })
-    @messages = (messages_from_lead + messages_from_call_converter)g
+    @messages = (messages_from_lead + messages_from_call_converter)
   end
 
   def update
