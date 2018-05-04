@@ -114,7 +114,6 @@
                 <div class="text-bubble alert <%= message.from == "+17734666919" ? 'alert-info' : 'alert-success' %>" role="alert">
                   <p><%= message.body %></p>
                   <h4><%= message.date_sent.in_time_zone("Central Time (US & Canada)").strftime("%b %e, %l:%M %p") %></h4>
-
                 </div>
               <% end %>
             </div>
