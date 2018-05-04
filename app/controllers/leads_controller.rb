@@ -47,7 +47,7 @@ class LeadsController < ApplicationController
                   :to   => @lead.phone,
                   :from => ENV['TWILIO_PHONE_NUMBER']
     })
-    @messages = (messages_from_lead + messages_from_call_converter).sort {|m,o| o.date_sent.to_d <=> m.date_sent.to_d}
+    @messages = sort_messages(messages_from_lead + messages_from_call_converter)
   end
 
   def update
@@ -139,6 +139,11 @@ class LeadsController < ApplicationController
   end
 
   private
+
+  def sort_messages(messages)
+    messages.sort {|m,o| o.date_sent.in_time_zone("Central Time (US & Canada)") <=> m.date_sent.in_time_zone("Central Time (US & Canada)")}
+    
+  end
 
   def lead_params
     params.require(:lead).permit(:first_name, :last_name, :email, :phone, :city, :state, :zip, :contacted, :appointment_date, :notes, :connected, :bad_number, :advisor, :location, :first_appointment_set, :first_appointment_actual, :first_appointment_format, :second_appointment_set, :second_appointment_actual, :second_appointment_format, :enrolled_date, :deposit_date, :sales, :collected, :status, :next_step, :rep_notes, :exclude_from_calling, :meeting_type, :meeting_format)
