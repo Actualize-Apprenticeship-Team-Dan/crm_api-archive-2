@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             lead.showEvents = false;
           });
           this.leads = response;
-          this.leads = _.orderBy(this.leads, ['most_recent_event'], ["desc"]);
+          this.leads = _.orderBy(this.leads, ["most_recent_event"], ["desc"]);
         }.bind(this)
       );
     },
@@ -30,61 +30,65 @@ document.addEventListener("DOMContentLoaded", function(event) {
         lead.showEvents = !lead.showEvents;
         this.filteredLeads[index] = lead;
       },
-      alphabetize: function(attr)
-      {
+      alphabetize: function(attr) {
         console.log(attr);
         direction = this.direction ? "asc" : "desc";
         this.direction = !this.direction;
-        var leads = _.orderBy(this.leads, [attr],[direction]);
+        var leads = _.orderBy(this.leads, [attr], [direction]);
         this.leads = leads;
       },
       zeroOutreach: function(lead) {
-        if(lead.outreaches.length === 0) {
+        if (lead.outreaches.length === 0) {
           return true;
         } else {
           return false;
         }
-
       },
       hotLead: function(lead) {
         if (this.zeroOutreach(lead)) {
-          return 'bg-warning'
+          return "bg-warning";
         }
 
-        var filterEvents = lead.events.filter(function(event){
+        var filterEvents = lead.events.filter(function(event) {
           return !!event;
         });
 
-        var filterOutreaches = lead.outreaches.filter(function(outreach){
+        var filterOutreaches = lead.outreaches.filter(function(outreach) {
           return !!outreach;
         });
 
-        var sortDates = function(a, b){
+        var sortDates = function(a, b) {
           var keyA = new Date(a.created_at),
-              keyB = new Date(b.created_at);
+            keyB = new Date(b.created_at);
           return keyB - keyA;
-        }
+        };
 
         var sortEvents = filterEvents.sort(sortDates);
         var lastEventDate = sortEvents.length ? sortEvents[0].created_at : null;
-        
+
         var sortOutreaches = filterOutreaches.sort(sortDates);
-        var lastOutreachDate = sortOutreaches.length ? sortOutreaches[0].created_at : null;
+        var lastOutreachDate = sortOutreaches.length
+          ? sortOutreaches[0].created_at
+          : null;
 
         if (lastEventDate === null || lastOutreachDate === null) {
-          return '';
+          return "";
         }
 
         var outreach = new Date(lastOutreachDate);
         var event = new Date(lastEventDate);
 
-
-        if ( event > outreach ) {
-          return 'bg-info'
-      } else {  
-          return '';
+        if (event > outreach) {
+          return "bg-info";
+        } else {
+          return "";
         }
-
+      },
+      autoText: function(lead) {
+        $.post("/autotext.json", { id: lead.id }).done(function(data) {
+          console.log(data);
+          alert(data.message);
+        });
       }
     },
     computed: {

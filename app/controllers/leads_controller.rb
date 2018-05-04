@@ -130,8 +130,10 @@ class LeadsController < ApplicationController
       body: "Hi #{first_name}. " + auto_text
     )
 
-    flash[:success] = "Message Sent!"
-    redirect_to '/'
+    respond_to do |format|
+      format.json { render json: { message: "Auto-Text Sent Successfully" } }
+      format.html { redirect_to '/', flash: { :success => "Message Sent" } }
+    end
   end
 
 
