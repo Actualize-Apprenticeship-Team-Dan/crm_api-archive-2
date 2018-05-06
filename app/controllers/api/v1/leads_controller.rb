@@ -1,7 +1,10 @@
 class Api::V1::LeadsController < ApplicationController
 
+  require 'will_paginate/array'
+
   def index
-    @leads = Lead.includes(:outreaches, :events).all
+    @leads = Lead.includes(:outreaches, :events).limit(params[:amount_leads])
+    
     render "index.json.jbuilder"
   end
 

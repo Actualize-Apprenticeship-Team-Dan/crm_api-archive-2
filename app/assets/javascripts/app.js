@@ -7,10 +7,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
       leadFilter: "",
       time_format: "12/25/17",
       url: "https://www.google.com/",
-      direction: true
+      direction: true,
+      amountLeads: 100
     },
     mounted: function() {
-      $.get("/api/v1/leads.json").success(
+      $.get("/api/v1/leads.json?amount_leads="+this.amountLeads).success(
         function(response) {
           console.log(this);
           response.forEach(function(lead) {
@@ -89,7 +90,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
           console.log(data);
           alert(data.message);
         });
-      }
+      },
+      loadMoreLeads: function() {
+          this.amountLeads += 100;
+          $.get("/api/v1/leads.json?amount_leads=" + this.amountLeads).success(
+            function(response) {
+              if (this.leads.length !== response.length) {
+                console.log(this.leads);
+                this.leads = response;
+              } 
+            }.bind(this)
+          );
+        }
+      
     },
     computed: {
       filteredLeads: function() {
@@ -108,4 +121,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
     }
   });
+  // triggers when you are scrolling down at the end of the page
+  $(window).scroll(function() {
+    console.log("scrollTop:",$(window).scrollTop()," documentHeight:",$(document).height()," windowHeight:",$(window).height())
+    if ($(window).scrollTop() >= $(document).height() - $(window).height() ) {
+      console.log("She wants to dance like Uman Thurman")
+      app.loadMoreLeads();
+    }
+  });
+
 });

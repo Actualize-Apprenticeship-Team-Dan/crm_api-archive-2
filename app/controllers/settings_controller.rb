@@ -6,7 +6,6 @@ class SettingsController < ApplicationController
 
   def update
     @setting = current_admin.setting
-    p setting_params
     if @setting.update(setting_params)
       flash[:notice] = "Done! setting #{@setting.auto_text} was updated"
       redirect_to "/"
