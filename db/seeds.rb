@@ -11,7 +11,7 @@ event_name = ['footer_form', 'tutorials', 'started application']
 
 Admin.create(email: "test@test.com", password: "password", password_confirmation: "password")
 
-50.times do
+10000.times do
   Lead.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,

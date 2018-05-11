@@ -2,6 +2,7 @@ class LeadsController < ApplicationController
   before_action :authenticate_admin!, except: [:token, :voice, :text]
 
   def index
+
     @all_leads_active = "active"
     @leads = Lead.where("phone <> ''").order(created_at: :desc)
     # If someone used the search box:
