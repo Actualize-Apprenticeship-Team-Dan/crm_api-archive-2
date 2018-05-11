@@ -25,7 +25,7 @@
               </tr>
             </thead>
             <tbody>
-              <template v-for="lead in filteredLeads" >
+              <template v-for="lead in leads" >
                 <tr v-bind:class="hotLead(lead)" v-on:click="showLeadEvents(lead)" :key="lead.id" >
                   <td>{{ moment(lead.created_at).format('dddd MMM Do YYYY, h:mm a') }}</td>
                   <td>{{ lead.first_name }}</td>

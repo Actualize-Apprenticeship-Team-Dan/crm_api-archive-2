@@ -3,8 +3,24 @@ class Api::V1::LeadsController < ApplicationController
   require 'will_paginate/array'
 
   def index
-    @leads = Lead.includes(:outreaches, :events).limit(params[:amount_leads])
-    
+    p "-"*50
+    p params["before"]
+    p params["actual"]
+    p params["leadFilter"]
+
+    filter = params[:filter] || ""
+    filter.downcase!
+    sort = params[:sort] || 'created_at'
+    direction = params[:direction] || "true"
+    direction = direction == "true" ? 'ASC' : 'DESC' 
+
+    if params[:filter] != nil && params[:filter] != "" 
+      
+      @leads = Lead.includes(:outreaches, :events).where("lower(first_name) LIKE ? OR lower(last_name) LIKE ? OR lower(email) LIKE ?","%#{filter}%","%#{filter}%","%#{filter}%").limit(100)
+    else
+      @leads = Lead.includes(:outreaches, :events).where("lower(first_name) LIKE ? OR lower(last_name) LIKE ? OR lower(email) LIKE ?","%#{filter}%","%#{filter}%","%#{filter}%").order("#{sort} #{direction}").limit(params["actual"]).offset(params["before"])
+    end
+
     render "index.json.jbuilder"
   end
 
@@ -35,5 +51,7 @@ class Api::V1::LeadsController < ApplicationController
     @lead.events.create(name: params[:name], created_at: params[:created_at], updated_at: params[:updated_at])
     render "show.json.jbuilder"
   end
+
+
 
 end
